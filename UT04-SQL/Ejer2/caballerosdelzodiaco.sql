@@ -8,6 +8,14 @@ CREATE TABLE IF NOT EXISTS Constelaciones (
     Descripcion TEXT
 );
 
+INSERT Constelaciones(Nombre,Descripcion)
+VALUES
+('Sagitario', 'Son malos'),
+('Dragón', 'Son buenos'),
+('Cisne', 'cacas'),
+('Andromeda', 'Son regular'),
+('Fenix', 'Locura');
+
 CREATE TABLE IF NOT EXISTS Caballeros_del_Zodiaco(
 ID INT AUTO_INCREMENT,
 Nombre VARCHAR (100) NOT NULL,
@@ -17,13 +25,6 @@ PRIMARY KEY (ID),
 FOREIGN KEY (ConstelacionID) REFERENCES Constelaciones(ID)
 );
 
-INSERT Constelaciones(Nombre,Descripcion)
-VALUES
-('Sagitario', 'Son malos'),
-('Dragón', 'Son buenos'),
-('Cisne', 'cacas'),
-('Andromeda', 'Son regular'),
-('Fenix', 'Locura');
 
 INSERT INTO Caballeros_del_Zodiaco (Nombre, SignoZodiacal, ConstelacionID)
 VALUES 
