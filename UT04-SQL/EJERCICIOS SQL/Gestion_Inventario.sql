@@ -43,55 +43,93 @@ VALUES
         (29, 'Cámara', 'Electrónica', 7, 449.99),
         (30, 'Gorra', 'Ropa', 50, 9.99);
 
-
+        -- 1.Encuentra todos los productos cuyo stock es menor a 10 unidades.-
         SELECT NOMBRE_PRODUCTO,STOCK
         FROM PRODUCTO
         WHERE STOCK < 10;
 
-
+        -- 2.Encuentra todos los productos cuya categoría es Electrónica o Ropa.-
         SELECT NOMBRE_PRODUCTO,CATEGORIA
         FROM PRODUCTO
         WHERE CATEGORIA IN('ELECTRONICA','ROPA');
 
+        -- 3.Encuentra todos los productos cuyo precio unitario es mayor a 100 euros.-
         SELECT NOMBRE_PRODUCTO,STOCK
         FROM PRODUCTO
         WHERE PRECIO_UNITARIO > 100;
 
-
+       -- 4.Encuentra el producto con el precio unitario más alto.-
         SELECT * 
         FROM PRODUCTO
         WHERE PRECIO_UNITARIO = (SELECT MAX(PRECIO_UNITARIO) FROM PRODUCTO);
 
-       
+        -- 5.Encuentra la categoría con el mayor valor total de stock.-
         SELECT CATEGORIA, SUM(STOCK * PRECIO_UNITARIO) AS VALOR_TOTAL_STOCK 
         FROM PRODUCTO
         GROUP BY CATEGORIA
         LIMIT 1;
 
+        -- 6.Encuentra el promedio del precio unitario de todos los productos.-
         SELECT AVG(PRECIO_UNITARIO) AS PROMERIO_PRECIO
         FROM PRODUCTO;
 
+        -- 7.Encuentra todos los productos cuyo nombre comienza con “A” y su stock es mayor a 0.-
         SELECT NOMBRE_PRODUCTO,STOCK
         FROM PRODUCTO
         WHERE NOMBRE_PRODUCTO LIKE 'A%' AND STOCK > 0;
 
+        -- 8.Encuentra todos los productos que no pertenecen a la categoría Alimentos y su precio unitario es inferior a 50 euros.-
         SELECT NOMBRE_PRODUCTO,PRECIO_UNITARIO
         FROM PRODUCTO
         WHERE CATEGORIA IN ('ELECTRONICA','ROPA','HERRAMIENTAS') AND PRECIO_UNITARIO < 50;
 
+        -- 9.Encuentra todos los productos cuya cantidad en stock es un número par.-
         SELECT *
         FROM PRODUCTO
         WHERE STOCK % 2 = 0;
 
+        -- 10.Encuentra todos los productos cuya categoría no contiene la palabra “Herramientas”.. -
         SELECT *
         FROM PRODUCTO
         WHERE CATEGORIA IN ('ELECTRONICA','ROPA','ALIMENTOS');
 
+        -- 11.Encuentra todos los productos cuyo precio unitario está dentro del rango de 50 a 100 euros. -
         SELECT *
         FROM PRODUCTO
         WHERE PRECIO_UNITARIO BETWEEN 50 AND 100;
 
-        
-       
+        -- 12.Encuentra el producto con la cantidad de stock más baja. -
+        SELECT *
+        FROM PRODUCTO
+        ORDER BY STOCK ASC 
+        LIMIT 1;
+
+        -- 13.Encuentra la categoría con el menor valor total de stock.-
+        SELECT *
+        FROM PRODUCTO
+        ORDER BY STOCK, CATEGORIA ASC 
+        LIMIT 1;
+
+        -- 14.Encuentra el número total de productos en cada categoría.-
+       SELECT CATEGORIA, SUM(STOCK) AS TOTAL_STOCK
+       FROM PRODUCTO
+       GROUP BY CATEGORIA
+       ORDER BY TOTAL_STOCK 
+       LIMIT 1;
+
+        SELECT CATEGORIA, COUNT(*) AS TOTAL_PRODUCTO
+        FROM PRODUCTO
+        GROUP BY CATEGORIA;
+
+       -- 15.Encuentra todos los productos que tienen el mismo precio unitario que otro producto.-
+        SELECT *
+        FROM PRODUCTO
+        WHERE PRECIO_UNITARIO IN (
+                SELECT PRECIO_UNITARIO
+                FROM PRODUCTO
+                GROUP BY PRECIO_UNITARIO
+                HAVING COUNT(*) > 1
+                
+                );
 
 
