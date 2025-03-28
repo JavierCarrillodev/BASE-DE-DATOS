@@ -133,3 +133,32 @@ VALUES
                 );
 
 
+        -- 16.Encuentra todos los productos cuyo nombre contiene al menos tres vocales.-
+        SELECT * FROM PRODUCTO
+        WHERE NOMBRE_PRODUCTO REGEXP '[aeiou].*[aeiou].*[aeiou]';
+
+        -- 17.Encuentra todos los productos que tienen el mismo nombre de categoría que otro producto.-
+        SELECT *
+        FROM PRODUCTO
+        WHERE CATEGORIA IN (
+                SELECT CATEGORIA
+                FROM PRODUCTO
+                GROUP BY CATEGORIA
+                HAVING COUNT(*) > 1
+        );
+
+        -- 18.Encuentra todos los productos cuyo nombre es más largo que su categoría.-
+        SELECT *
+        FROM PRODUCTOS
+        WHERE LENGTH(NOMBRE_PRODUCTO) > LENGTH(CATEGORIA);
+
+        -- 19.Encuentra todos los productos cuyo precio unitario es un número entero.-
+        SELECT *
+        FROM PRODUCTO
+        WHERE MOD(PRECIO_UNITARIO, 1) = 0;
+
+        -- 20Encuentra el producto con el mayor valor total (stock * precio_unitario)-
+        SELECT *
+        FROM PRODUCTO
+        ORDER BY (STOCK * PRECIO_UNITARIO) DESC 
+        LIMIT 1;
