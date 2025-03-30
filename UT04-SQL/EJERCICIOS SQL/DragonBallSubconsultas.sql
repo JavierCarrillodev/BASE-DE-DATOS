@@ -85,12 +85,3 @@ FROM Guerreros
 GROUP BY raza
 ORDER BY poder_total DESC;
 
-SELECT g.raza, g.nombre, g.poder
-FROM Guerreros g
-INNER JOIN (
-    SELECT raza, MAX(poder) AS max_poder
-    FROM Guerreros
-    GROUP BY raza
-) AS top_guerreros
-ON g.raza = top_guerreros.raza
-AND g.poder = top_guerreros.max_poder;
