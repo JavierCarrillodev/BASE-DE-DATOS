@@ -79,3 +79,38 @@ SELECT NOMBRE,NIVEL_PODER,CANTIDAD_TRANSFORMACIONES,
       FROM GUERRERO
       WHERE NIVEL_PODER IS NOT NULL
   );
+
+
+  SELECT RAZA, poder_medio
+FROM (
+    SELECT RAZA, AVG(NIVEL_PODER) AS poder_medio
+    FROM GUERRERO
+    WHERE NIVEL_PODER IS NOT NULL
+    GROUP BY RAZA
+) AS promedio_por_raza
+WHERE poder_medio > 8000;
+
+SELECT nombre, nivel_poder - 
+       (SELECT AVG(nivel_poder) FROM GUERRERO WHERE nivel_poder IS NOT NULL) AS poder_vs_media
+FROM GUERRERO;
+
+SELECT raza, COUNT(*) AS total
+FROM GUERRERO
+GROUP BY raza
+HAVING COUNT(*) >= (
+    SELECT COUNT(*)
+    FROM GUERRERO
+    WHERE raza = 'Humano'
+);
+
+SELECT nombre
+FROM GUERRERO
+WHERE nivel_poder > (
+    SELECT MAX(poder_medio)
+    FROM (
+        SELECT AVG(nivel_poder) AS poder_medio
+        FROM GUERRERO
+        WHERE nivel_poder IS NOT NULL
+        GROUP BY raza
+    ) AS medias_por_raza
+);
