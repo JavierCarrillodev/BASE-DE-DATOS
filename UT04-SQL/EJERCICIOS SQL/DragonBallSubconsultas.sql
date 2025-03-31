@@ -106,3 +106,26 @@ WHERE G.poder = (
 
 
 -- 8.Encuentra el nombre del guerrero con mayor número de técnicas.-
+SELECT NOMBRE 
+FROM Guerreros
+WHERE ID = (
+    SELECT ID_GUERRERO
+    FROM Tecnicas
+    GROUP BY ID_GUERRERO
+    ORDER BY COUNT(*) DESC
+    LIMIT 1
+);
+
+-- 9.Calcula el promedio de poder de los guerreros Namekianos.
+SELECT AVG(PODER) AS PROMEDIO_PODER
+FROM Guerreros
+WHERE RAZA = 'NAMEKIANO';
+
+-- 10.Encuentra los guerreros que tienen una técnica de ataque con “Beam” en el nombre.
+SELECT NOMBRE
+FROM Guerreros
+WHERE id IN (
+    SELECT ID_GUERRERO
+    FROM Tecnicas
+    WHERE tipo = 'Ataque' and nombre LIKE '%Beam%'
+);
