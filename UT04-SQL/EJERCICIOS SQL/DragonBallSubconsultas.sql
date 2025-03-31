@@ -86,19 +86,23 @@ GROUP BY raza
 ORDER BY poder_total DESC;
 
 -- 6.Muestra el poder del guerrero más poderoso de cada raza.-
-SELECT g.raza, g.nombre, g.poder
-FROM Guerreros g
-INNER JOIN (
-    SELECT raza, MAX(poder) AS max_poder
-    FROM Guerreros
-    GROUP BY raza
-) AS top_guerreros
-ON g.raza = top_guerreros.raza
-AND g.poder = top_guerreros.max_poder;
-
-
+SELECT G.raza, G.nombre, G.poder
+FROM Guerreros G
+WHERE G.poder = (
+    SELECT MAX(G2.poder)
+    FROM Guerreros G2
+    WHERE G2.raza = G.raza
+);
 
 -- 7.Muestra el poder del guerrero más poderoso de cada raza, ordenado de mayor a menor.-
+SELECT G.raza, G.nombre, G.poder
+FROM Guerreros G
+WHERE G.poder = (
+    SELECT MAX(G2.poder)
+    FROM Guerreros G2
+    WHERE G2.raza = G.raza
+)
+    ORDER BY G.poder DESC;
 
 
 -- 8.Encuentra el nombre del guerrero con mayor número de técnicas.-
