@@ -158,7 +158,4 @@ VALUES
         WHERE MOD(PRECIO_UNITARIO, 1) = 0;
 
         -- 20Encuentra el producto con el mayor valor total (stock * precio_unitario)-
-        SELECT *
-        FROM PRODUCTO
-        ORDER BY (STOCK * PRECIO_UNITARIO) DESC 
-        LIMIT 1;
+      
