@@ -142,6 +142,4 @@ FROM Guerreros
 JOIN Tecnicas 
 ON Guerreros.id = Tecnicas.id_guerrero;
 
-SELECT *
-FROM Guerreros
-JOIN Tecnicas;
+
