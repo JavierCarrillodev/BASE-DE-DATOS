@@ -113,4 +113,9 @@ WHERE nivel_poder > (
         WHERE nivel_poder IS NOT NULL
         GROUP BY raza
     ) AS medias_por_raza
+
+SELECT *
+FROM Guerreros
+LEFT JOIN Tecnicas
+ON Guerreros.id_guerrero = tecnicas.id_guerrero;
 );
