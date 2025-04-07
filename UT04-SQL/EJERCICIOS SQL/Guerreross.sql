@@ -104,3 +104,17 @@ SELECT *
 FROM guerreros_z
 RIGHT JOIN tecnicas
 ON guerreros_z.id_guerrero = tecnicas.id_guerrero;
+
+SELECT *
+FROM guerreros_z
+RIGHT JOIN tecnicas
+ON guerreros_z.id_guerrero = tecnicas.id_guerrero
+WHERE guerreros_z.id_guerrero IS NULL;
+
+SELECT *
+FROM guerreros_z
+LEFT JOIN tecnicas ON guerreros_z.id_guerrero = tecnicas.id_guerrero
+UNION
+SELECT *
+FROM guerreros_z
+RIGHT JOIN tecnicas ON guerreros_z.id_guerrero = tecnicas.id_guerrero;
