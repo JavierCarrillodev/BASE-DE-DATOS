@@ -35,6 +35,10 @@ VALUES
     ('Gohan', '27', 'Humanoide', 2),
     ('Javi', '28', 'Extraterrestre', 3);
 
+UPDATE Torneos
+SET ubicacion = LOWER(ubicacion);
 
+SELECT UPPER(ubicacion) AS ubicacion,nombre
+FROM Torneos
 
 
