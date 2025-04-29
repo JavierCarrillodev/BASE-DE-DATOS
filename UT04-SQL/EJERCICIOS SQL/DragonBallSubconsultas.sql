@@ -130,18 +130,9 @@ WHERE id IN (
     WHERE tipo = 'Ataque' and nombre LIKE '%Beam%'
 );
 
-SELECT *
-FROM Guerreros, Tecnicas;
 
-SELECT * 
-FROM Guerreros AS G, Tecnicas AS T
-WHERE G.id = T.id_guerrero;
 
 SELECT *
 FROM Guerreros
-JOIN Tecnicas 
+LEFT JOIN Tecnicas 
 ON Guerreros.id = Tecnicas.id_guerrero;
-
-SELECT *
-FROM Guerreros
-JOIN Tecnicas;
