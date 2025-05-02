@@ -116,6 +116,10 @@ UPDATE mecanicos
 SET dni = '3333333ZZZ'
 WHERE dni = '11223344C';
 
+UPDATE mecanicos
+SET nombre = 'Victoria'
+WHERE nombre = 'Carlos';
+
 SELECT * FROM mecanicos;
 SELECT * FROM trabajos;
 
