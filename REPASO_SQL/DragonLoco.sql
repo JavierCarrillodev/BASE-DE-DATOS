@@ -100,4 +100,11 @@ select * from Guerreros;
 
 
 
+SELECT COUNT(raza) FROM Guerreros;
 
+SELECT nombre, poder FROM Guerreros WHERE poder > (SELECT AVG(poder) FROM Guerreros);
+
+
+SELECT nombre,poder FROM Guerreros WHERE poder = (SELECT MAX(poder) FROM Guerreros);
+
+SELECT nombre,poder FROM Guerreros WHERE  poder = (SELECT MIN(poder) FROM Guerreros);

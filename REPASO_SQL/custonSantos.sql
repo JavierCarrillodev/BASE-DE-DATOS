@@ -123,5 +123,7 @@ WHERE nombre = 'Carlos';
 SELECT * FROM mecanicos;
 SELECT * FROM trabajos;
 
+SELECT COUNT(nombre) AS Nombre_Mecanico FROM mecanicos;
+
 
 
