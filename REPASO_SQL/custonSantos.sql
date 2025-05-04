@@ -126,4 +126,19 @@ SELECT * FROM trabajos;
 SELECT COUNT(nombre) AS Nombre_Mecanico FROM mecanicos;
 
 
+-- Podemos juntar las tablas con where
+select *
+from mecanicos,trabajos
+WHERE mecanicos.dni = trabajos.dni;
 
+-- O tambien con JOIN Y ON que es mas moderno
+select *
+from mecanicos
+JOIN trabajos
+ON mecanicos.dni = trabajos.dni;
+
+SELECT *
+FROM Guerreros_Z
+RIGHT JOIN TECNICAS
+ON Guerreros_Z.id_guerrero = TECNICAS.id_guerrero
+WHERE Guerreros_Z.id_guerrero IS NULL;

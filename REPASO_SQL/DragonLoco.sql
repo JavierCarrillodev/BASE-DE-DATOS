@@ -108,3 +108,50 @@ SELECT nombre, poder FROM Guerreros WHERE poder > (SELECT AVG(poder) FROM Guerre
 SELECT nombre,poder FROM Guerreros WHERE poder = (SELECT MAX(poder) FROM Guerreros);
 
 SELECT nombre,poder FROM Guerreros WHERE  poder = (SELECT MIN(poder) FROM Guerreros);
+
+
+SELECT raza, AVG(poder) AS Media_Poder
+from Guerreros
+GROUP BY raza;
+
+SELECT raza, AVG(poder) AS PODER_MAXIMO
+FROM Guerreros
+GROUP BY raza
+HAVING AVG(poder) > 8000;
+
+SELECT raza, COUNT(*) AS TOTAL
+FROM Guerreros
+GROUP BY raza
+HAVING COUNT(*) >= 2;
+
+SELECT nombre, poder
+FROM Guerreros
+ORDER BY poder DESC;
+
+SELECT raza, poder
+FROM Guerreros
+ORDER BY raza ASC, poder DESC;
+
+SELECT nombre, poder 
+FROM Guerreros
+ORDER BY poder DESC
+LIMIT 3;
+
+SELECT nombre, poder
+FROM Guerreros
+ORDER BY poder DESC
+LIMIT 3,3;
+
+-- Obtener los guerreros con poder mayor al de Vegeta pero menor al de Goku
+SELECT nombre, poder FROM Guerreros WHERE poder > 
+(SELECT poder FROM Guerreros WHERE nombre = 'Vegeta') AND
+poder < ( SELECT poder from Guerreros
+WHERE nombre = 'Goku');
+
+
+SELECT nombre, poder
+FROM Guerreros
+WHERE poder >= ALL (SELECT MAX(poder) FROM Guerreros );
+
+select *
+FROM Guerreros, Peleas; 
