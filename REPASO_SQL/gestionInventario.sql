@@ -42,4 +42,96 @@ INSERT INTO producto VALUES
 (29, 'Cámara', 'Electrónica', 7, 449.99),
 (30, 'Gorra', 'Ropa', 50, 9.99);
 
-SELECT * from producto;
+SELECT * FROM producto
+WHERE stock < 10;
+
+SELECT * 
+FROM producto 
+WHERE categoria = 'Electrónica' OR categoria = 'Ropa';
+
+SELECT * FROM producto
+WHERE precio_unitario > 100;
+
+SELECT nombre_producto,precio_unitario
+FROM producto
+ORDER BY precio_unitario desc
+limit 1;
+
+SELECT categoria,stock
+FROM producto
+ORDER BY stock desc
+limit 1;
+
+ -- Asi tambien vale
+-- SELECT categoria,stock
+-- FROM producto
+-- WHERE stock = (SELECT MAX(stock) FROM producto);
+
+SELECT nombre_producto, AVG(precio_unitario)
+FROM producto
+Group by nombre_producto;
+
+SELECT * 
+FROM producto
+WHERE nombre_producto LIKE 'A%' AND stock > 0;
+
+SELECT nombre_producto, categoria
+FROM producto
+WHERE categoria != 'Alimentos' AND precio_unitario < 50;
+
+SELECT * 
+FROM producto
+WHERE stock  % 2 = 0;
+
+SELECT * 
+FROM producto
+WHERE categoria NOT LIKE '%Herramientas%';
+
+SELECT *
+FROM producto
+ORDER BY stock ASC 
+LIMIT 1;
+
+SELECT categoria ,SUM(stock) AS TOTAL_STOCK
+FROM producto
+GROUP BY categoria
+ORDER BY TOTAL_STOCK ASC
+LIMIT 1;
+
+SELECT categoria, COUNT(*) AS total_productos
+FROM producto
+GROUP BY categoria;
+
+SELECT nombre_producto, precio_unitario
+FROM producto
+WHERE precio_unitario IN (
+    SELECT precio_unitario
+    FROM producto
+    GROUP BY precio_unitario
+    HAVING COUNT(*) > 1
+);
+
+SELECT nombre_producto
+FROM producto
+WHERE nombre_producto LIKE '%a%' and nombre_producto LIKE '%e%';
+
+SELECT nombre_producto, categoria
+FROM producto
+WHERE categoria IN (SELECT categoria FROM producto GROUP BY categoria HAVING COUNT(*) > 1 )
+ORDER BY categoria DESC;
+
+SELECT nombre_producto,categoria
+FROM producto
+WHERE LENGTH(nombre_producto) >  LENGTH(categoria);
+
+SELECT nombre_producto,precio_unitario
+FROM producto
+WHERE precio_unitario = FLOOR(precio_unitario);
+
+SELECT nombre_producto, (stock * precio_unitario) AS VALOR_TOTAL
+FROM producto
+ORDER BY VALOR_TOTAL DESC
+LIMIT 1;
+
+
+
