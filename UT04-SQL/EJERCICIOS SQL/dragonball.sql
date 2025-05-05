@@ -39,7 +39,7 @@ INSERT INTO guerrero_tecnica (id, id_guerrero, id_tecnica) VALUES
 (2, 2, 2),
 (3, 3, 3);
 
-INSERT INTO guerreros VALUES (4,"Gohan","Saiyan-Humano",7500);
+
 
 UPDATE guerreros
 SET nivel_poder = 9500

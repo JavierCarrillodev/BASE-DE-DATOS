@@ -106,4 +106,9 @@ HAVING raza = 'Namekiano';
 SELECT g.nombre, t.nombre
 FROM Guerreros g
 JOIN Tecnicas t ON g.id = t.id_guerrero
-where t.nombre LIKE '%Beam%'
+where t.nombre LIKE '%Beam%';
+
+
+Select UPPER(nombre)
+from Guerreros
+where Length(nombre) > 5 ;
