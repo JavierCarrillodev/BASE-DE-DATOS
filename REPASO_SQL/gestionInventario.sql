@@ -132,6 +132,3 @@ SELECT nombre_producto, (stock * precio_unitario) AS VALOR_TOTAL
 FROM producto
 ORDER BY VALOR_TOTAL DESC
 LIMIT 1;
-
-
-
